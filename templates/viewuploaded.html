@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Uploaded</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+          padding: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="display:flex;justify-content:center;align-items:center;margin-top: 100px;">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    Uploaded at
+                </td>
+                <td>
+                    Audio File
+                </td>
+            </tr>
+            {% for record in records  %}
+               <tr>
+                    <td>
+                        {{record.uploaded_at}}
+                    </td>
+                    <td>
+                        <audio controls id="player">
+                            <source src=" {% if record.file %} {{ record.file.url }} {% endif %}" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                </tr>
+              {% endfor %}
+       </tbody>
+    </table>
+    </div>
+</body>
+</html>
